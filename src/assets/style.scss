@@ -1,0 +1,23 @@
+.container {
+ display: flex;
+ align-items: center;
+ flex-direction: column;
+ margin-top: 50px;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.button {
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+.input {
+  width: 300px;
+}
