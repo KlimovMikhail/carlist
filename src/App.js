@@ -4,6 +4,8 @@ import { Button } from './components/Button';
 import { CarsList } from './components/CarsList';
 import { cars } from './Utils';
 import { Form } from './components/Form';
+
+import { v4 as uuidv4 } from 'uuid';
 import "./assets/style.scss"
 
 
@@ -17,13 +19,12 @@ export class App extends React.Component {
 
   buttonHandleAdd = () => {
     const { cars } = this.state
-    const lastElement = cars[cars.length - 1]
     this.setState({
       filteredCars: [],
       cars: [
         ...cars,
         {
-          id: lastElement.id + 1,
+          id: uuidv4(),
           model: 'Ford',
           color: 'blue',
         }
@@ -43,13 +44,14 @@ export class App extends React.Component {
   buttonHandleFilter = () => {
     this.setState((prevState) => {
       return {
-        cars: prevState.cars.filter((elem) => elem.color === 'blue')
+        filteredCars: prevState.cars.filter((elem) => elem.color === 'blue')
       }
     })
   };
 
   buttonHandleReset = () => {
-    this.setState({ cars, filteredCars: [] })
+    const { cars } = this.state
+    this.setState({ cars: cars, filteredCars: [] })
   }
 
   handleChangeInput = (e) => {
